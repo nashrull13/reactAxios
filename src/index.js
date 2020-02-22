@@ -11,6 +11,7 @@ import FetchUsingHook from "./components/FetchUsingHook";
 import PostUsingHook from "./components/PostUsingHook";
 import Main from "./layouts/Main";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import UpdateBook from "./components/UpdateBook";
 
 // const routing = (
 //   <Router>
@@ -53,18 +54,19 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 //   </Router>
 // );
 
-const routing = (  
-        <Router>
-          <Switch>
-            <Main>
-              <Switch>              
-                <Route path="/postbook" component={PostUsingHook} />
-            <Route path="/getbook" component={FetchUsingHook} />
-              </Switch>
-            </Main>
-          </Switch>
-        </Router>
-      );
+const routing = (
+  <Router>
+    <Switch>
+      <Main>
+        <Switch>
+          <Route path="/postbook" component={PostUsingHook} />
+          <Route path="/getbook" component={FetchUsingHook} />
+          <Route path="/updatebook/:id" component={UpdateBook} />
+        </Switch>
+      </Main>
+    </Switch>
+  </Router>
+);
     
 
   

@@ -33,12 +33,7 @@ const Navigation = () => {
             <NavLink to="/updatebook" tag={RRNavLink}>
               Update Books
             </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/deletebook" tag={RRNavLink}>
-              Delete Books
-            </NavLink>
-          </NavItem>
+          </NavItem>          
         </Nav>
       </Collapse>
     </Navbar>

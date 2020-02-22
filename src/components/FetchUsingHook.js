@@ -71,7 +71,7 @@ function FetchUsingHook() {
           <td>{data.language}</td>
           <td>{data.publisher_id}</td>
           <td>
-            <Link to={"/put/" + data.id}>
+            <Link to={"/updatebook/" + data.id}>
               <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
             </Link>
           </td>
