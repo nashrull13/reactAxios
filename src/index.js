@@ -7,11 +7,11 @@ import App from "./App";
 // import NotFound from "./components/NotFound";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Main from "./layouts/Main";
 import FetchUsingHook from "./components/FetchUsingHook";
 import PostUsingHook from "./components/PostUsingHook";
-import Main from "./layouts/Main";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import UpdateBook from "./components/UpdateBook";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // const routing = (
 //   <Router>
@@ -61,7 +61,7 @@ const routing = (
         <Switch>
           <Route path="/postbook" component={PostUsingHook} />
           <Route path="/getbook" component={FetchUsingHook} />
-          <Route path="/updatebook/:id" component={UpdateBook} />
+          <Route path="/updatebook" component={UpdateBook} />
         </Switch>
       </Main>
     </Switch>

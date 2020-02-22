@@ -37,23 +37,6 @@ function FetchUsingHook() {
     });
   }
 
-  function deleteConfirm(title, id) {
-    confirmAlert({
-      title: "Peringatan",
-      message: "Apakah anda yakin ingin menghapus buku " + title + "?",
-      buttons: [
-        {
-          label: "Delete",
-          onClick: () => deleteBook(id)
-        },
-        {
-          label: "Tidak",
-          onClick: () => {}
-        }
-      ]
-    });
-  }
-
   function deleteBook(id) {
     axios.delete(`http://localhost:8082/books/${id}`);
     window.location.reload(false);
@@ -98,23 +81,11 @@ function FetchUsingHook() {
           <th scope="col">Pages</th>
           <th scope="col">Language</th>
           <th scope="col">Publisher_Id</th>
-          <th scope="col">Update Book</th>
+          <th scope="col">Edit Book</th>
           <th scope="col">Delete Book</th>
         </tr>
       </thead>
-      <tbody>
-        {data.book.map((data, id) => (
-          <tr key={id}>
-            <th scope="row">{id}</th>
-            <td>{data.title}</td>
-            <td>{data.author}</td>
-            <td>{data.published_date}</td>
-            <td>{data.pages}</td>
-            <td>{data.language}</td>
-            <td>{data.publisher_id}</td>
-          </tr>
-        ))}
-      </tbody>
+       <tbody>{render()}</tbody>        
     </table>
   );
 }

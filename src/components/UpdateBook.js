@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import axios from "axios";
 
-class UpdateBook extends Component {
+export default class UpdateBook extends Component {
   constructor(props) {
     super(props);
 
@@ -20,8 +20,10 @@ class UpdateBook extends Component {
 
   componentDidMount = async () => {
     const id = this.props.match.params.id;
-    const result = await axios.get("http://localhost:8082/books/" + id);
- 
+    const result = await axios.get("http://localhost:8083/books/" + id);
+    // const [data, setData] = useState({ data: [] });
+    // setData(result.data);
+
     this.setState(result.data.books[0]);
 
     console.log(result.data.books[0]);
@@ -38,7 +40,7 @@ class UpdateBook extends Component {
   handlerSubmit = async e => {
     const id = this.props.match.params.id;
     e.preventDefault();
-    await axios.put("http://localhost:8082/books/" + id, this.state);
+    await axios.put("http://localhost:8083/books/" + id, this.state);
     this.props.history.push("/get");
   };
 
@@ -61,9 +63,12 @@ class UpdateBook extends Component {
                 class="form-control"
                 value={this.state.title}
                 onChange={this.handlerChange}
-          
+                //   ref={register({
+                //     required: "Required"
+                //   })}
               />
-           
+
+              {/* <span>{errors.name && errors.name.message}</span> */}
             </div>
             <div class="form-group">
               <label for="author">Author</label>
@@ -71,10 +76,14 @@ class UpdateBook extends Component {
                 name="author"
                 class="form-control"
                 type="text"
-                value={this.state.author}              
+                value={this.state.author}
+                // ref={register({
+                //   required: "Required"
+                // })}
                 onChange={this.handlerChange}
               />
-             
+
+              {/* <span>{errors.email && errors.email.message}</span> */}
             </div>
 
             <div class="form-group">
@@ -83,10 +92,14 @@ class UpdateBook extends Component {
                 name="pages"
                 class="form-control"
                 type="number"
-                value={this.state.pages}               
+                value={this.state.pages}
+                // ref={register({
+                //   required: "Required"
+                // })}
                 onChange={this.handlerChange}
               />
-             
+
+              {/* <span>{errors.email && errors.email.message}</span> */}
             </div>
             <div class="form-group">
               <label for="author">Language</label>
@@ -94,10 +107,14 @@ class UpdateBook extends Component {
                 name="language"
                 class="form-control"
                 type="text"
-                value={this.state.language}                
+                value={this.state.language}
+                // ref={register({
+                //   required: "Required"
+                // })}
                 onChange={this.handlerChange}
-              />            
-              
+              />
+
+              {/* <span>{errors.email && errors.email.message}</span> */}
             </div>
             <div class="form-group">
               <label for="author">Publisher Id</label>
@@ -105,10 +122,14 @@ class UpdateBook extends Component {
                 name="published_id"
                 class="form-control"
                 type="number"
-                value={this.state.publisher_id}                
+                value={this.state.publisher_id}
+                // ref={register({
+                //   required: "Required"
+                // })}
                 onChange={this.handlerChange}
               />
-              
+
+              {/* <span>{errors.email && errors.email.message}</span> */}
             </div>
             <button type="submit" value="edit" class="btn btn-primary">
               Edit
@@ -119,5 +140,3 @@ class UpdateBook extends Component {
     );
   }
 }
-
-export default UpdateBook;
