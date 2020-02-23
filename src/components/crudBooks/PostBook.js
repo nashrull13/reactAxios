@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
-const PostUsingHook = props => {
+const PostBook = props => {
     const defaultValues = {
         title: "",
         author: "",
-        pubdate: "",
+        published_date: "",
         pages: "",
         language: "",
-        pubid: ""
+        published_id: ""
     };
     const { register, reset } = useForm({
         defaultValues
@@ -21,27 +21,31 @@ const PostUsingHook = props => {
         published_date: "",
         pages: "",
         language: "",
-        publisher_id: ""
+        published_id: ""
     });
 
 
     const handleSubmit = async e => {
-        e.preventDefault();
+        
+         e.preventDefault();
         try {
-            const result = await axios.post("http://localhost:8084/books", {
+            const result = await axios.post("http://localhost:3003/books", {
                 title: form.title,
                 author: form.author,
-                published_date: form.pubdate,
+                published_date: form.published_date,
                 pages: form.pages,
                 language: form.language,
-                publisher_id: form.pubid
-            });
+                published_id: form.published_id
+            });            
             if (result.status === 201) {
-                alert("Data inserted sucessfuly!");
+                alert("Data inserted sucessfuly!");                
             } else {
                 throw new Error("Failed to insert data!");
             }
-        } catch (err) {
+            
+        }
+        
+        catch (err) {
             console.log(err);
         }
     };
@@ -54,12 +58,10 @@ const PostUsingHook = props => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <center>
-                <p>
-                    <h2>Form Input Buku</h2>
-                </p>
-            </center>
+        <div className="container">
+            <div className="cardregis">
+                <div className="title">Add Book Form</div>
+                    <form onSubmit={handleSubmit}>           
 
             <div className="container mt-5">
                 <div class="form-group">
@@ -91,11 +93,11 @@ const PostUsingHook = props => {
 
                 </div>
                 <div class="form-group">
-                    <label for="pubdate">Published Date</label>
+                    <label for="published_date">Published Date</label>
                     <input
-                        name="pubdate"
+                        name="published_date"
                         type="date"
-                        value={form.pubdate}
+                        value={form.published_date}
                         class="form-control"
                         ref={register({
                             required: "Required"
@@ -133,10 +135,10 @@ const PostUsingHook = props => {
 
                 </div>
                 <div class="form-group">
-                    <label for="pubid">Publisher id</label>
+                    <label for="published_id">Publisher id</label>
                     <input
-                        name="pubid"
-                        value={form.pubid}
+                        name="published_id"
+                        value={form.published_id}
                         type="number"
                         class="form-control"
                         ref={register({
@@ -157,8 +159,10 @@ const PostUsingHook = props => {
                     Submit
         </button>
             </div>
-        </form>
+                </form>
+            </div>
+        </div>
     );
 };
 
-export default PostUsingHook;
+export default PostBook;

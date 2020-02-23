@@ -1,17 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-// import { Route, Link, BrowserRouter as Router } from "react-router-dom";
-import App from "./App";
-// import About from "./components/about";
-// import NotFound from "./components/NotFound";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Main from "./layouts/Main";
-import FetchUsingHook from "./components/FetchUsingHook";
-import PostUsingHook from "./components/PostUsingHook";
-import UpdateBook from "./components/UpdateBook";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import App from "./App";
+// import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import About from "./components/about";
+// import NotFound from "./components/NotFound";
+// import Main from "./components/layouts/Main";
+// import UpdateBook from "./components/crudBooks/UpdateBook";
+// import GetBook from "./components/crudBooks/GetBook";
+// import PostBook from "./components/crudBooks/PostBook";
 
 // const routing = (
 //   <Router>
@@ -54,23 +54,23 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 //   </Router>
 // );
 
-const routing = (
-  <Router>
-    <Switch>
-      <Main>
-        <Switch>
-          <Route path="/postbook" component={PostUsingHook} />
-          <Route path="/getbook" component={FetchUsingHook} />
-          <Route path="/updatebook" component={UpdateBook} />
-        </Switch>
-      </Main>
-    </Switch>
-  </Router>
-);
+// const routing = (
+//   <Router>
+//     <Switch>
+//       <Main>
+//         <Switch>
+//           <Route path="/getbook" component={GetBook} />
+//           <Route path="/postbook" component={PostBook} />          
+//           <Route path="/updatebook/:id" component={UpdateBook} />
+//         </Switch>
+//       </Main>
+//     </Switch>
+//   </Router>
+// );
     
 
   
-ReactDOM.render(routing, document.getElementById("root"));
+ReactDOM.render(<App/>, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

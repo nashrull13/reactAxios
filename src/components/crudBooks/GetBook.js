@@ -4,11 +4,11 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { Link } from "react-router-dom";
 
-function FetchUsingHook() {
-  const [data, setData] = useState({ book: [] });
+function GetBook() {
+  const [data, setData] = useState({ data: [] });
   useMemo(() => {
     const fetchData = async () => {
-      const result = await axios("http://localhost:8082/books");
+      const result = await axios("http://localhost:3003/books");
       setData(result.data);
     };
     try {
@@ -22,15 +22,15 @@ function FetchUsingHook() {
 
   function deleteConfirm(title, id) {
     confirmAlert({
-      title: "Peringatan",
-      message: "Apakah anda yakin ingin menghapus buku " + title + "?",
+      title: "Alert",
+      message: "Are you sure to remove " + title + "?",
       buttons: [
         {
-          label: "Delete",
+          label: "Yes",
           onClick: () => deleteBook(id)
         },
         {
-          label: "Tidak",
+          label: "No",
           onClick: () => {}
         }
       ]
@@ -38,12 +38,12 @@ function FetchUsingHook() {
   }
 
   function deleteBook(id) {
-    axios.delete(`http://localhost:8082/books/${id}`);
+    axios.delete(`http://localhost:3003/books/${id}`);
     window.location.reload(false);
   }
 
   const render = () => {
-    return data.book.map((data, id) => {
+    return data.data.map((data, id) => {
       return (
         <tr key={id}>
           <td>{data.id}</td>
@@ -52,16 +52,16 @@ function FetchUsingHook() {
           <td>{data.published_date}</td>
           <td>{data.pages}</td>
           <td>{data.language}</td>
-          <td>{data.publisher_id}</td>
+          <td>{data.published_id}</td>
           <td>
             <Link to={"/updatebook/" + data.id}>
-              <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+              <i className="fa fa-pencil" width="5px"></i>
             </Link>
           </td>
           <td>
             <i
-              className="fa fa-trash"
-              aria-hidden="true"
+              className="fa fa-trash" width="5px"
+              
               onClick={() => deleteConfirm(data.title, data.id)}
             ></i>
           </td>
@@ -80,7 +80,7 @@ function FetchUsingHook() {
           <th scope="col">Published_Date</th>
           <th scope="col">Pages</th>
           <th scope="col">Language</th>
-          <th scope="col">Publisher_Id</th>
+          <th scope="col">Published_Id</th>
           <th scope="col">Edit Book</th>
           <th scope="col">Delete Book</th>
         </tr>
@@ -89,4 +89,4 @@ function FetchUsingHook() {
     </table>
   );
 }
-export default FetchUsingHook;
+export default GetBook;

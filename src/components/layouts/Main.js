@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Col } from "reactstrap";
 // import Navigation from "../components/Navigation";
-import NavBooks from "../components/NavBooks";
+import NavBooks from "../crudBooks/NavBooks";
 
 const Main = props => {
   return (

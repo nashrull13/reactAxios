@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
-import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+//import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 
 import {
   Collapse,
@@ -12,12 +12,12 @@ import {
   NavLink,
 } from "reactstrap";
 
-const Navigation = () => {
+const NavBook = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   return (
     <Navbar color="light" light expand="md">
-      <NavbarBrand href={"/"}>React Task</NavbarBrand>
+      <NavbarBrand href={"/"}>Book Form</NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
@@ -31,15 +31,11 @@ const Navigation = () => {
               Post Books
             </NavLink>
           </NavItem>
-          <NavItem>
-            <NavLink to="/updatebook" tag={RRNavLink}>
-              Update Books
-            </NavLink>
-          </NavItem>          
+       
         </Nav>
       </Collapse>
     </Navbar>
   );
 };
 
-export default Navigation;
+export default NavBook;
