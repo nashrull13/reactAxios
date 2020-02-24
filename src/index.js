@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import * as serviceWorker from "./serviceWorker";
-import "bootstrap/dist/css/bootstrap.min.css";
-import App from "./App";
+// import React from "react";
+// import ReactDOM from "react-dom";
+// import "./index.css";
+// import * as serviceWorker from "./serviceWorker";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import App from "./App";
 // import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 // import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import About from "./components/about";
@@ -67,12 +67,36 @@ import App from "./App";
 //     </Switch>
 //   </Router>
 // );
-    
+
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+// import "./styles.css";
+import Counters from "./component/Counters";
+import SearchForm from "./component/SearchForm";
+import Repos from "./component/Repos";
+
+
+function App() {  
+  return (
+    <div className="App">
+      <h1>Search GitHub Repos</h1>
+      <SearchForm />
+      <Counters />
+      <Repos />
+    </div>
+  );
+}
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
+
+
 
   
-ReactDOM.render(<App/>, document.getElementById("root"));
+// ReactDOM.render(<App/>, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+// serviceWorker.unregister();

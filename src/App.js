@@ -60,21 +60,21 @@ import PostBook from "./components/crudBooks/PostBook";
 
 //     export default App;
 
-const App = props => {
-  return (
-        <Router>
-          <Switch>
-            <Main>
-              <Switch>              
-            <Route path="/getbook" component={GetBook} />
-            <Route path="/postbook" component={PostBook} />
-            <Route path="/updatebook/:id" component={UpdateBook}/>
-              </Switch>
-            </Main>
-          </Switch>
-        </Router>
-      );
-    };
+// const App = props => {
+//   return (
+//         <Router>
+//           <Switch>
+//             <Main>
+//               <Switch>              
+//             <Route path="/getbook" component={GetBook} />
+//             <Route path="/postbook" component={PostBook} />
+//             <Route path="/updatebook/:id" component={UpdateBook}/>
+//               </Switch>
+//             </Main>
+//           </Switch>
+//         </Router>
+//       );
+//     };
 
-    export default App;
+//     export default App;
 
