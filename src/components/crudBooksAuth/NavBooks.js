@@ -31,7 +31,11 @@ const NavBook = () => {
               Post Books
             </NavLink>
           </NavItem>
-       
+          <NavItem>
+            <NavLink to="/login" tag={RRNavLink}>
+              Log In
+            </NavLink>
+          </NavItem>
         </Nav>
       </Collapse>
     </Navbar>

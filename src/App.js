@@ -27,6 +27,7 @@ import Main from "./components/layouts/Main";
 import UpdateBook from "./components/crudBooks/UpdateBook";
 import GetBook from "./components/crudBooks/GetBook";
 import PostBook from "./components/crudBooks/PostBook";
+import LoginForm from "./components/crudBooksAuth/LoginForm";
 // import Home from "./components/Home";
 // import Profile from "./components/UserProfile";
 // import About from "./components/About";
@@ -62,18 +63,19 @@ import PostBook from "./components/crudBooks/PostBook";
 
 const App = props => {
   return (
-        <Router>
+    <Router>
+      <Switch>
+        <Main>
           <Switch>
-            <Main>
-              <Switch>              
+            <Route path="/login" component={LoginForm} />
             <Route path="/getbook" component={GetBook} />
             <Route path="/postbook" component={PostBook} />
-            <Route path="/updatebook/:id" component={UpdateBook}/>
-              </Switch>
-            </Main>
+            <Route path="/updatebook/:id" component={UpdateBook} />
           </Switch>
-        </Router>
-      );
+        </Main>
+      </Switch>
+    </Router>
+  );
     };
 
     export default App;
