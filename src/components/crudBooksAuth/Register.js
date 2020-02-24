@@ -33,9 +33,9 @@ const Register = props => {
                 username: form.username,
                 email: form.email,
                 password: form.password,
-                roles: form.roles                
+                roles: ["USER"]                
             });
-            console.log(result)
+         
             if (result.status === 200) {
                 alert("Data inserted sucessfuly!");
             } else {
