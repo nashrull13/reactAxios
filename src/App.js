@@ -24,10 +24,12 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from "./components/layouts/Main";
-import UpdateBook from "./components/crudBooks/UpdateBook";
-import GetBook from "./components/crudBooks/GetBook";
-import PostBook from "./components/crudBooks/PostBook";
-import LoginForm from "./components/crudBooksAuth/LoginForm";
+import UpdateBook from "./components/crudBooksAuth/UpdateBook";
+import GetBook from "./components/crudBooksAuth/GetBook";
+import PostBook from "./components/crudBooksAuth/PostBook";
+//import LoginForm from "./components/crudBooksAuth/LoginForm";
+import Register from "./components/crudBooksAuth/Register";
+import Login from "./components/crudBooksAuth/LoginForm";
 // import Home from "./components/Home";
 // import Profile from "./components/UserProfile";
 // import About from "./components/About";
@@ -67,7 +69,8 @@ const App = props => {
       <Switch>
         <Main>
           <Switch>
-            <Route path="/login" component={LoginForm} />
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
             <Route path="/getbook" component={GetBook} />
             <Route path="/postbook" component={PostBook} />
             <Route path="/updatebook/:id" component={UpdateBook} />

@@ -30,10 +30,15 @@ const NavBook = () => {
             <NavLink to="/postbook" tag={RRNavLink}>
               Post Books
             </NavLink>
+          </NavItem>          
+          <NavItem>
+            <NavLink to="/register" tag={RRNavLink}>
+              Register
+            </NavLink>
           </NavItem>
           <NavItem>
             <NavLink to="/login" tag={RRNavLink}>
-              Log In
+              Login Form
             </NavLink>
           </NavItem>
         </Nav>

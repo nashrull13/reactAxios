@@ -25,7 +25,7 @@ export default class UpdateBook extends Component {
 
   componentDidMount = async () => {
     const id = this.props.match.params.id;
-    const res = await axios.get("http://localhost:3003/books/" + id);
+    const res = await axios.get("http://localhost:3004/books/" + id);
     this.setState(res.data.data[0]);
   };
 
@@ -41,7 +41,7 @@ export default class UpdateBook extends Component {
 
     e.preventDefault();
 
-    await axios.put("http://localhost:3003/books/" + id, this.state);
+    await axios.put("http://localhost:3004/books/" + id, this.state);
     alert("Update Successfully!");
     this.props.history.push("/getbook");
   };
@@ -73,7 +73,16 @@ export default class UpdateBook extends Component {
                   onChange={this.getUpdate}
                 />
               </div>
-
+              <div className="form-group">
+                <label>Published Date</label>
+                <input
+                  name="published_date"
+                  className="form-control"
+                  type="date"
+                  value={this.state.pages}
+                  onChange={this.getUpdate}
+                />
+              </div>
               <div className="form-group">
                 <label>Pages</label>
                 <input

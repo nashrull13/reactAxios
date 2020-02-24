@@ -8,7 +8,7 @@ function GetBook() {
   const [data, setData] = useState({ data: [] });
   useMemo(() => {
     const fetchData = async () => {
-      const result = await axios("http://localhost:3003/books");
+      const result = await axios("http://localhost:3004/books");
       setData(result.data);
     };
     try {
