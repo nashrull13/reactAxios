@@ -73,7 +73,7 @@ const App = props => {
             <Route path="/login" component={Login} />
             <Route path="/getbook" component={GetBook} />
             <Route path="/postbook" component={PostBook} />
-            <Route path="/updatebook/:id" component={UpdateBook} />
+            <Route path="/updatebook/:id" component={UpdateBook} />           
           </Switch>
         </Main>
       </Switch>

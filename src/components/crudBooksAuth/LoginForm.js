@@ -62,7 +62,7 @@ export default function Login() {
                 <input
                   name="password"
                   class="form-control"
-                  type="text"
+                  type="password"
                   value={form.password}                  
                   onChange={updateField}
                 />
