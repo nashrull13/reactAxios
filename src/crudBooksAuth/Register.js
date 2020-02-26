@@ -52,8 +52,9 @@ const Register = props => {
       [e.target.name]: e.target.value
     });
   };
+
   if (status.isRedirect === true) {
-    return <Redirect to="/login" />;
+      return <Redirect to="/login" />    
   } else {
     return (
       <div className="container">

@@ -1,78 +1,79 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+//import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import "bootstrap/dist/css/bootstrap.min.css";
-import App from "./App";
-// import { Route, Link, BrowserRouter as Router } from "react-router-dom";
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// import About from "./components/about";
-// import NotFound from "./components/NotFound";
-// import Main from "./components/layouts/Main";
-// import UpdateBook from "./components/crudBooks/UpdateBook";
-// import GetBook from "./components/crudBooks/GetBook";
-// import PostBook from "./components/crudBooks/PostBook";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Login from "./crudBooksAuth/LoginForm";
+import Register from "./crudBooksAuth/Register";
+import Notfound from "./crudBooksAuth/NotFound";
+import GetBook from "./crudBooksAuth/GetBook";
+import HomeUser from "./crudBooksAuth/HomeUser";
+import HomeAdmin from "./crudBooksAuth/HomeAdmin";
+import PostBook from "./crudBooksAuth/PostBook";
+import UpdateBook from "./crudBooksAuth/UpdateBook";
+import Main from "./layouts/Main";
+import GetUser from "./crudBooksAuth/GetUser";
 
-// const routing = (
-//   <Router>
-//     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-//       <Link className="navbar-brand" to="/">
-//         Nav
-//       </Link>
-//       <button
-//         className="navbar-toggler"
-//         type="button"
-//         data-toggle="collapse"
-//         data-target="#navbarSupportedContent"
-//         aria-controls="navbarSupportedContent"
-//         aria-expanded="false"
-//         aria-label="Toggle navigation"
-//       >
-//         <span className="navbar-toggler-icon"></span>
-//       </button>
+// console.log(token);
+function getRole() { }
+const token = JSON.parse(
+    sessionStorage.getItem("persisted_state_hook:token")
+);
 
-//       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-//         <ul className="navbar-nav mr-auto">
-//           <li className="nav-item active">
-//             <Link className="navbar-brand" to="/">
-//               Home
-//             </Link>
-//           </li>
-//           <li className="nav-item">
-//             <Link className="navbar-brand" to="/about">
-//               About
-//             </Link>
-//           </li>
-//         </ul>
-//       </div>
-//     </nav>
-//     <switch>
-//       <Route exact path="/" component={App} />
-//       <Route path="/about/:number" component={About} />
-//       <Route component={NotFound} />
-//     </switch>
-//   </Router>
-// );
+const routing = (
+  <Router>
+    <Switch>
+      <Main>
+        {(() => {
+          if (!token) {
+            return (
+              <>
+                <Switch>
+                  <Route exact path="/" component={Login} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/register" component={Register} />
+                  <Route component={Notfound} />
+                </Switch>
+              </>
+            );
+          } else if (token.token.Role === "USER") {
+            return (
+              <>
+                <Switch>
+                  <Route exact path="/homeuser" component={HomeUser} />
+                  <Route path="/getbook" component={GetBook} />
+                  <Route path="/login" component={Login} />
+                  <Route component={Notfound} />
+                </Switch>
+              </>
+            );
+          } else if (token.token.Role === "ADMIN") {
+            return (
+                <>
+              <Switch>
+                <Route exact path="/homeadmin" component={HomeAdmin} />
+                <Route path="/getbook" component={GetBook} /> 
+                <Route path="/getuser" component={GetUser} />           
+                <Route path="/postbook" component={PostBook} /> 
+                {/* <Route path="/getbyid" component={GETBYID} /> */}
+                <Route path="/updatebook/:id" component={UpdateBook} />
+                <Route path="/login" component={Login} />
+                <Route component={Notfound} />
+              </Switch>
+                </>
+            );
+          }
+        })()}
+      </Main>
+    </Switch>
+  </Router>
+);
 
-// const routing = (
-//   <Router>
-//     <Switch>
-//       <Main>
-//         <Switch>
-//           <Route path="/getbook" component={GetBook} />
-//           <Route path="/postbook" component={PostBook} />          
-//           <Route path="/updatebook/:id" component={UpdateBook} />
-//         </Switch>
-//       </Main>
-//     </Switch>
-//   </Router>
-// );
-    
-
-  
-ReactDOM.render(<App/>, document.getElementById("root"));
+ReactDOM.render(routing, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
+
 serviceWorker.unregister();

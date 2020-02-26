@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 
 const PostBook = props => {
+   
     const defaultValues = {
         title: "",
         author: "",
@@ -26,19 +27,30 @@ const PostBook = props => {
 
 
     const handleSubmit = async e => {
-        
+        const token = JSON.parse(
+            sessionStorage.getItem("persisted_state_hook:token")
+        );
          e.preventDefault();
         try {
-            const result = await axios.post("http://localhost:3004/books", {
+            const result = await axios({
+                method: "post",
+                url: "http://localhost:3003/books",
+                headers: {
+                    Authorization: token.token.accessToken
+                },
+                data: form
+            }, {
                 title: form.title,
                 author: form.author,
                 published_date: form.published_date,
                 pages: form.pages,
                 language: form.language,
                 published_id: form.published_id
-            });            
+            });     
+            // setData(result.data);
+
             if (result.status === 201) {
-                alert("Data inserted sucessfuly!");                
+                alert("Data inserted successfuly!");                
             } else {
                 throw new Error("Failed to insert data!");
             }

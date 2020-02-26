@@ -1,15 +1,14 @@
 import React from "react";
 import { Container, Col } from "reactstrap";
-// import Navigation from "../components/Navigation";
-import NavBooks from "../crudBooksAuth/NavBooks";
+import Navigation from "../crudBooksAuth/Navigation";
 
 const Main = props => {
   return (
     <>
-      <NavBooks />
+      <Navigation />
       <Container fluid={true} className="mt-2">
         <Col>{props.children}</Col>
-        <Col></Col>
+        
       </Container>
     </>
   );

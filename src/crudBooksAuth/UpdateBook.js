@@ -6,52 +6,68 @@ export default class UpdateBook extends Component {
     super(props);
 
     this.state = {
-      error: "",
-      data: [
-        {
-          id: "",
-          title: "",
-          author: "",
-          published_date: "",
-          pages: "",
-          language: "",
-          published_id: "",
-          createdAt: "",
-          updatedAt: ""
-        }
-      ]
+      id: "",
+      title: "",
+      author: "",
+      published_date: "",
+      pages: "",
+      language: "",
+      published_id: "",
+      createdAt: "",
+      updatedAt: ""
     };
   }
 
   componentDidMount = async () => {
     const id = this.props.match.params.id;
-    const res = await axios.get("http://localhost:3004/books/" + id);
-    this.setState(res.data.data[0]);
+    const token = JSON.parse(
+      sessionStorage.getItem("persisted_state_hook:token")
+    );
+    const result = await axios({
+      method: "get",
+      url: "http://localhost:3003/books/" + id,
+      headers: {
+        Authorization: token.token.accessToken
+      }
+    });
+
+    this.setState(result.data.book);
+
+    console.log(result);
   };
 
-  getUpdate = e => {
+  handlerChange = e => {
     const target = e.target;
     const name = target.name;
     const value = target.value;
     this.setState({ [name]: value });
+    // console.log(this.state.title);
   };
 
-  getId = async e => {
+  handlerSubmit = async e => {
     const id = this.props.match.params.id;
-
+    const token = JSON.parse(
+      sessionStorage.getItem("persisted_state_hook:token")
+    );
     e.preventDefault();
-
-    await axios.put("http://localhost:3004/books/" + id, this.state);
-    alert("Update Successfully!");
+    await axios({
+      method: "put",
+      url: "http://localhost:3003/books/" + id,
+      data: this.state,
+      headers: {
+        Authorization: token.token.accessToken
+      }
+    });
+    alert("Data updated successfuly!");  
     this.props.history.push("/getbook");
-  };
-
-  render() {
+  }; 
+  render()
+  {
     return (
       <div className="container">
         <div className="cardregis">
           <div className="title">Update Book</div>
-          <form onSubmit={this.getId}>
+          <form onSubmit={this.handlerSubmit}>
             <div className="container mt-5">
               <div className="form-group">
                 <label>Title </label>
@@ -60,7 +76,7 @@ export default class UpdateBook extends Component {
                   type="text"
                   className="form-control"
                   value={this.state.title}
-                  onChange={this.getUpdate}
+                  onChange={this.handlerChange}
                 />
               </div>
               <div className="form-group">
@@ -70,7 +86,7 @@ export default class UpdateBook extends Component {
                   className="form-control"
                   type="text"
                   value={this.state.author}
-                  onChange={this.getUpdate}
+                  onChange={this.handlerChange}
                 />
               </div>
               <div className="form-group">
@@ -80,7 +96,7 @@ export default class UpdateBook extends Component {
                   className="form-control"
                   type="date"
                   value={this.state.pages}
-                  onChange={this.getUpdate}
+                  onChange={this.handlerChange}
                 />
               </div>
               <div className="form-group">
@@ -90,7 +106,7 @@ export default class UpdateBook extends Component {
                   className="form-control"
                   type="number"
                   value={this.state.pages}
-                  onChange={this.getUpdate}
+                  onChange={this.handlerChange}
                 />
               </div>
               <div className="form-group">
@@ -100,7 +116,7 @@ export default class UpdateBook extends Component {
                   className="form-control"
                   type="text"
                   value={this.state.language}
-                  onChange={this.getUpdate}
+                  onChange={this.handlerChange}
                 />
               </div>
               <div className="form-group">
@@ -110,7 +126,7 @@ export default class UpdateBook extends Component {
                   className="form-control"
                   type="text"
                   value={this.state.published_id}
-                  onChange={this.getUpdate}
+                  onChange={this.handlerChange}
                 />
               </div>
               <button type="submit" value="Submit" className="btn btn-primary">
@@ -123,3 +139,4 @@ export default class UpdateBook extends Component {
     );
   }
 }
+
