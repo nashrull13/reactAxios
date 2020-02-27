@@ -14,9 +14,11 @@ import PostBook from "./crudBooksAuth/PostBook";
 import UpdateBook from "./crudBooksAuth/UpdateBook";
 import Main from "./layouts/Main";
 import GetUser from "./crudBooksAuth/GetUser";
+import GetOrder from "./crudBooksAuth/GetOrder";
+import GetOrderUser from "./crudBooksAuth/GetOrderUser";
 
 // console.log(token);
-function getRole() { }
+
 const token = JSON.parse(
     sessionStorage.getItem("persisted_state_hook:token")
 );
@@ -43,6 +45,7 @@ const routing = (
                 <Switch>
                   <Route exact path="/homeuser" component={HomeUser} />
                   <Route path="/getbook" component={GetBook} />
+                  <Route path="/getorderuser" component={GetOrderUser} />
                   <Route path="/login" component={Login} />
                   <Route component={Notfound} />
                 </Switch>
@@ -55,7 +58,8 @@ const routing = (
                 <Route exact path="/homeadmin" component={HomeAdmin} />
                 <Route path="/getbook" component={GetBook} /> 
                 <Route path="/getuser" component={GetUser} />           
-                <Route path="/postbook" component={PostBook} /> 
+                <Route path="/postbook" component={PostBook} />
+                <Route path="/getorder/:id" component={GetOrder} /> 
                 {/* <Route path="/getbyid" component={GETBYID} /> */}
                 <Route path="/updatebook/:id" component={UpdateBook} />
                 <Route path="/login" component={Login} />

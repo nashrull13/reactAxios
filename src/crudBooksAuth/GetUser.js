@@ -61,38 +61,16 @@ function GetUser() {
   }
     
 
-//   async function pinjam(id) {
-//     const token = JSON.parse(
-//       sessionStorage.getItem("persisted_state_hook:token")
-//     );
-//     try {
-//       await axios({
-//         method: "post",
-//         url: `http://localhost:3003/orders/${id}`,
-//         headers: {
-//           Authorization: token.token.accessToken
-//         },
-//         data: {
-//           userId: token.token.id,
-//           bookId: id
-//         }
-//       });
-//     } catch (err) {
-//       console.log(err);
-//     }
-//     alert("Anda berhasil meminjam");
-//     window.location.reload();
-//   }
-
   const render = () => {
+    let no = 1;
     return data.user.map((data, id) => {
       return (
         <tr key={id}>
-          <td>{data.id}</td>
+          <td>{no++}</td>
           <td>{data.name}</td>
           <td>{data.username}</td>
           <td>{data.email}</td>
-          <td>{data.password}</td>               
+          <td>{data.roles[0].name}</td>            
           
           <td>
             <Link to={"#" + data.id}>
@@ -114,7 +92,18 @@ function GetUser() {
                       <i className="fa fa-trash"></i>
                       
                     </button>
-                    </td>                  
+                    </td> 
+                    <td>
+            <Link to={"/getorder/" + data.id}>
+              <button
+                type="button"
+                className="btn btn-secondary btn-sm mt-1"
+               
+              >
+                <i className="fa fa-address-card"></i>
+              </button>
+            </Link>
+          </td>                 
                          
         </tr>
       );
@@ -129,9 +118,10 @@ function GetUser() {
           <th scope="col">Name</th>
           <th scope="col">Username</th>
           <th scope="col">Email</th>
-          <th scope="col">Password</th>
+          <th scope="col">Role</th>
           <th scope="col">Edit </th>
-          <th scope="col">Delete </th>               
+          <th scope="col">Delete </th>
+          <th scope="col">List Order </th>
               
         </tr>
       </thead>

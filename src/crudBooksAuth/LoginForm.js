@@ -50,9 +50,9 @@ export default function Login() {
   };
 
   if (role === "ADMIN") {
-    return <Redirect to={"/admin"} />;
+   window.location.replace("/homeadmin")
   } else if (role === "USER") {
-    return <Redirect to={"/user"} />;
+    window.location.replace("/homeuser")
   }
 
   return (

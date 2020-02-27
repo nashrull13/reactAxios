@@ -62,7 +62,7 @@ function GetBook() {
   }
 
 
-  async function pinjam(id) {
+  async function orderBooks(id) {
     const token = JSON.parse(
       sessionStorage.getItem("persisted_state_hook:token")
     );
@@ -82,14 +82,15 @@ function GetBook() {
       console.log(err);
     }
     alert("Anda berhasil meminjam");
-    window.location.reload();
+    // window.location.reload();
   }
 
   const render = () => {
+    let no = 1;
     return data.book.map((data, id) => {
       return (
         <tr key={id}>
-          <td>{data.id}</td>
+          <td>{no++}</td>
           <td>{data.title}</td>
           <td>{data.author}</td>
           <td>{data.published_date}</td>
@@ -125,9 +126,11 @@ function GetBook() {
                 );
               } else {
                 return (
-                  <button type="button" class="btn btn-warning">
-                    <i class="fa fa-eye" onClick={() => pinjam(data.id)}></i>
-                  </button>
+                  <td>
+                    <button type="button" class="btn btn-info btn-sm" onClick={() => orderBooks(data.id)}>
+                    <i class="fa fa-gear" width="5px"></i>
+                    </button>
+                  </td>
                 );
               }
             })()}

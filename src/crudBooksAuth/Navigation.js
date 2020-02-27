@@ -1,18 +1,10 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import "../assets/style.css"
 
-import React, { useState } from "react";
-import { NavLink as RRNavLink } from "react-router-dom";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
- 
-} from "reactstrap";
 
-function Navigation () {
+
+export default function Navigation() {
   const token = JSON.parse(
     sessionStorage.getItem("persisted_state_hook:token")
   );
@@ -21,100 +13,128 @@ function Navigation () {
     sessionStorage.setItem("persisted_state_hook:token", "");
     sessionStorage.clear();
   }
-
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
-
-  if (!token) {
-    return (
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href={"/"}>BOOKS</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink to="/login" tag={RRNavLink}>
+   
+    
+     
+if (!token) {  
+  return (    
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="./" class="navbar-brand">BOOKS</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav navbar-right">
+            <Link to="/login">
+              <li>
                 Login
-            </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/register" tag={RRNavLink}>
+            </li>
+            </Link>
+            <Link to="/register">
+              <li>
                 Register
-            </NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
-    );
-  } else if (token.token.Role === "ADMIN") {
+            </li>
+            </Link>                       
+          </ul>
+        </nav>
+      </div>
+    </header>
+  );
+} else if (token.token.Role === "USER") {
     return (
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href={"/"}>BOOKS</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink to="/homeadmin" tag={RRNavLink}>
-                Home
-                </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/getbook" tag={RRNavLink}>
-                List Books (Admin)
-                </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/postbook" tag={RRNavLink}>
+      <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+        <div class="container">
+          <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">BOOKS</a>
+          </div>
+          <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              <Link to="/homeuser">
+                <li>
+                  Home 
+            </li>
+              </Link>
+              <Link to="/getbook">
+                <li>
+                  List Book
+            </li>
+              </Link>
+              <Link to="/getorderuser">
+                <li>
+                  List Order
+            </li>
+              </Link>
+              <Link onClick={logout} to="/login">
+                <li>
+                  Logout
+               </li>
+              </Link>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    );
+} else if (token.token.Role === "ADMIN") {
+  return (
+       <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+        <div class="container">
+          <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">BOOKS</a>
+          </div>
+          <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav navbar-right">
+            <Link to="/homeadmin">
+              <li>
+                Home 
+            </li>
+            </Link>
+            <Link to="/getbook">
+              <li>
+                List Book
+            </li>
+            </Link>
+            <Link to="/postbook">
+              <li>
                 Add Book
-                </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/getuser" tag={RRNavLink}>
+            </li>
+            </Link>
+            <Link to="/getuser">
+              <li>
                 List User
-                </NavLink>
-            </NavItem>
-            {/* <NavItem>
-              <NavLink to="/getbookbyid" tag={RRNavLink}>
-                Get Book id
-                </NavLink>
-            </NavItem> */}
-            <NavItem>
-              <NavLink onClick={logout} to="/login" tag={RRNavLink}>
+            </li>
+            </Link>            
+            <Link onClick={logout} to="/login">
+              <li>
                 Logout
-                </NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
+               </li>
+            </Link>
+            </ul>
+          </nav>
+        </div>
+      </header>
+          
     );
-  } else if (token.token.Role === "USER") {
-    return (
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href={"/"}>BOOKS</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink to="/homeuser" tag={RRNavLink}>
-                Home
-                </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/getbook" tag={RRNavLink}>
-                List Books
-                </NavLink>
-            </NavItem>            
-            <NavItem>
-              <NavLink onClick={logout} to="/login" tag={RRNavLink}>
-                Logout
-                </NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
-    );
-  }
+}
 }
 
-export default Navigation;
+
+
 

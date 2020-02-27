@@ -1,20 +1,8 @@
-import React, { useState } from "react";
-import { NavLink as RRNavLink } from "react-router-dom";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from "reactstrap";
+import React from "react";
+import "../assets/style.css"
 
-function NavBook() {
+
+export default function Navigation() {
     const token = JSON.parse(
         sessionStorage.getItem("persisted_state_hook:token")
     );
@@ -24,83 +12,70 @@ function NavBook() {
         sessionStorage.clear();
     }
    
-    const [isOpen, setIsOpen] = useState(false);
-    const toggle = () => setIsOpen(!isOpen);
     
 if (!token) {  
-  return (
-    <Navbar color="light" light expand="md">
-      <NavbarBrand href={"/"}>BOOKS</NavbarBrand>
-      <NavbarToggler onClick={toggle} />
-      <Collapse isOpen={isOpen} navbar>
-        <Nav className="mr-auto" navbar>
-          <NavItem>
-            <NavLink to="/login" tag={RRNavLink}>
-              Login
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/register" tag={RRNavLink}>
-              Register
-            </NavLink>
-          </NavItem>                  
-        </Nav>
-      </Collapse>
-    </Navbar>
+  return (    
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">BOOKS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#/register">Register</a>
+          </li>          
+        </ul>
+      </div>
+    </div>
+  </nav>
   );
-} else if (token.token.Role === "ADMIN") {
-    return (
-        <Navbar color="light" light expand="md">
-        <NavbarBrand href={"/"}>BOOKS</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-            <NavItem>
-                <NavLink to="/getbook" tag={RRNavLink}>
-                List Books (Admin)
-                </NavLink>
-            </NavItem>
-            <NavItem>
-                <NavLink to="/postbook" tag={RRNavLink}>
-                Add Book
-                </NavLink>
-            </NavItem>
-            <NavItem>
-                <NavLink to="/getbookbyid" tag={RRNavLink}>
-                Get Book id
-                </NavLink>
-            </NavItem>
-            <NavItem>
-                <NavLink onClick={logout} to="/login" tag={RRNavLink}>
-                Logout
-                </NavLink>
-            </NavItem>                  
-            </Nav>
-        </Collapse>
-        </Navbar>
-    );
 } else if (token.token.Role === "USER") {
     return (
-        <Navbar color="light" light expand="md">
-        <NavbarBrand href={"/"}>BOOKS</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-            <NavItem>
-                <NavLink to="/getbookuser" tag={RRNavLink}>
-                List Books
-                </NavLink>
-            </NavItem>            
-            <NavItem>
-                <NavLink onClick={logout} to="/login" tag={RRNavLink}>
-                Logout
-                </NavLink>
-            </NavItem>                 
-            </Nav>
-        </Collapse>
-        </Navbar>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">BOOKS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#/register">Register</a>
+          </li>          
+        </ul>
+      </div>
+    </div>
+  </nav>
+    );
+} else if (token.token.Role === "ADMIN") {
+    return (
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">BOOKS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#/register">Register</a>
+          </li>          
+        </ul>
+      </div>
+    </div>
+  </nav>
     );
 }
 }
 
-export default NavBook;

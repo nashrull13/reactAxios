@@ -54,8 +54,8 @@ const Register = props => {
   };
 
   if (status.isRedirect === true) {
-      return <Redirect to="/login" />    
-  } else {
+    window.location.replace("/login")   
+  } 
     return (
       <div className="container">
         <div className="cardregis">
@@ -174,7 +174,7 @@ const Register = props => {
           </form>            </div>
       </div>
     );
-  }
+  
 }
 
 export default Register;
