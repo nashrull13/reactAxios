@@ -16,6 +16,7 @@ import Main from "./layouts/Main";
 import GetUser from "./crudBooksAuth/GetUser";
 import GetOrder from "./crudBooksAuth/GetOrder";
 import GetOrderUser from "./crudBooksAuth/GetOrderUser";
+import UpdateUser from "./crudBooksAuth/UpdateUser";
 
 // console.log(token);
 
@@ -62,6 +63,7 @@ const routing = (
                 <Route path="/getorder/:id" component={GetOrder} /> 
                 {/* <Route path="/getbyid" component={GETBYID} /> */}
                 <Route path="/updatebook/:id" component={UpdateBook} />
+                <Route path="/updateuser/:id" component={UpdateUser} />
                 <Route path="/login" component={Login} />
                 <Route component={Notfound} />
               </Switch>

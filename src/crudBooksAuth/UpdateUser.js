@@ -1,20 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class UpdateBook extends Component {
+export default class UpdateUser extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       id: "",
-      title: "",
-      author: "",
-      published_date: "",
-      pages: "",
-      language: "",
-      published_id: "",
-      createdAt: "",
-      updatedAt: ""
+      name: "",
+      username: "",
+      email: "",
+      password: "",
+      roles: ""
+      
     };
   }
 
@@ -25,13 +23,13 @@ export default class UpdateBook extends Component {
     );
     const result = await axios({
       method: "get",
-      url: "http://localhost:3003/books/" + id,
+      url: "http://localhost:3003/users/" + id,
       headers: {
         Authorization: token.token.accessToken
       }
     });
 
-    this.setState(result.data.book);
+    this.setState(result.data.user);
 
     console.log(result);
   };
@@ -52,7 +50,7 @@ export default class UpdateBook extends Component {
     e.preventDefault();
     await axios({
       method: "put",
-      url: "http://localhost:3003/books/" + id,
+      url: "http://localhost:3003/users/" + id,
       data: this.state,
       headers: {
         Authorization: token.token.accessToken
@@ -66,69 +64,59 @@ export default class UpdateBook extends Component {
     return (
       <div className="container">
         <div className="cardregis">
-          <div className="title">Update Book</div>
+          <div className="title">Update User</div>
           <form onSubmit={this.handlerSubmit}>
             <div className="container mt-5">
               <div className="form-group">
-                <label>Title </label>
+                <label>Name </label>
                 <input
-                  name="title"
+                  name="name"
                   type="text"
                   className="form-control"
-                  value={this.state.title}
+                  value={this.state.name}
                   onChange={this.handlerChange}
                 />
               </div>
               <div className="form-group">
-                <label>Author</label>
+                <label>Username</label>
                 <input
-                  name="author"
+                  name="username"
                   className="form-control"
                   type="text"
-                  value={this.state.author}
+                  value={this.state.username}
                   onChange={this.handlerChange}
                 />
               </div>
               <div className="form-group">
-                <label>Published Date</label>
+                <label>Email</label>
                 <input
-                  name="published_date"
+                  name="email"
                   className="form-control"
                   type="date"
-                  value={this.state.published_date}
+                  value={this.state.email}
                   onChange={this.handlerChange}
                 />
               </div>
               <div className="form-group">
-                <label>Pages</label>
+                <label>Password</label>
                 <input
-                  name="pages"
+                  name="password"
                   className="form-control"
                   type="number"
-                  value={this.state.pages}
+                  value={this.state.password}
                   onChange={this.handlerChange}
                 />
               </div>
               <div className="form-group">
-                <label>Language</label>
+                <label>Role</label>
                 <input
                   name="language"
                   className="form-control"
                   type="text"
-                  value={this.state.language}
+                  value={this.state.roles}
                   onChange={this.handlerChange}
                 />
-              </div>
-              <div className="form-group">
-                <label>Published Id</label>
-                <input
-                  name="published_id"
-                  className="form-control"
-                  type="text"
-                  value={this.state.published_id}
-                  onChange={this.handlerChange}
-                />
-              </div>
+              </div>              
               <button type="submit" value="Submit" className="btn btn-primary">
                 Submit
               </button>

@@ -27,7 +27,7 @@ if (!token) {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="./" class="navbar-brand">BOOKS</a>
+          <a href="./" class="navbar-brand">NAVIGATION UP HERE</a>
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
           <ul class="nav navbar-nav navbar-right">
@@ -57,7 +57,7 @@ if (!token) {
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a href="./" class="navbar-brand">BOOKS</a>
+            <a href="./" class="navbar-brand">NAVIGATION UP HERE</a>
           </div>
           <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav navbar-right">
@@ -97,7 +97,7 @@ if (!token) {
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a href="./" class="navbar-brand">BOOKS</a>
+          <a href="./" class="navbar-brand">NAVIGATION UP HERE</a>
           </div>
           <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav navbar-right">

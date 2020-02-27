@@ -73,7 +73,7 @@ function GetUser() {
           <td>{data.roles[0].name}</td>            
           
           <td>
-            <Link to={"#" + data.id}>
+            <Link to={"/updateuser" + data.id}>
                         <button
                         type="button"
                         className="btn btn-secondary btn-sm mt-1"
